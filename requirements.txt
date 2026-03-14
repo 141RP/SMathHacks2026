@@ -1,0 +1,6 @@
+psycopg[binary]>=3.2,<4.0
+SQLAlchemy>=2.0,<3.0
+GeoPandas>=1.0,<2.0
+Shapely>=2.0,<3.0
+pyproj>=3.6,<4.0
+fiona>=1.9,<2.0
