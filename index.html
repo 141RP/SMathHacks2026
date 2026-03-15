@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ReefSync</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { height: 100vh; display: flex; align-items: center; justify-content: center; background: #f0f0f0; }
+    #map { width: 800px; height: 500px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+  </style>
+</head>
+<body>
+
+  <div id="map"></div>
+
+  <script>
+    const map = L.map('map', { worldCopyJump: false }).setView([25.0, -80.4], 10); // Florida Keys
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors',
+      noWrap: true
+    }).addTo(map);
+
+    // Mock survey pins — swap with real API later
+    const surveys = [
+      { lat: 25.0097, lng: -80.3762, name: "Molasses Reef", org: "NOAA", date: "2025-02-15" },
+      { lat: 25.0255, lng: -80.3529, name: "French Reef",   org: "Reef Check", date: "2025-02-18" },
+      { lat: 24.6266, lng: -81.1102, name: "Sombrero Reef", org: "Coral Restoration", date: "2025-02-20" },
+      { lat: 24.5481, lng: -81.4068, name: "Looe Key",      org: "FKNMS", date: "2025-02-22" },
+    ];
+
+    surveys.forEach(s => {
+      L.marker([s.lat, s.lng])
+        .addTo(map)
+        .bindPopup(`<b>${s.name}</b><br>${s.org}<br>${s.date}`);
+    });
+  </script>
+
+</body>
+</html>
